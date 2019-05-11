@@ -8,25 +8,40 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Funcionarios"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarFunc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuRegistrarFunc">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuPagamentos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pagamentos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuAprovarPagamentos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuAutorizarPag">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Aprovar"/>
+                <Property name="text" type="java.lang.String" value="Autorizar"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuCadastrarPagamentos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarPag">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar"/>
+                <Property name="text" type="java.lang.String" value="Consultar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarPagActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuListarPagamentos">
+            <MenuItem class="javax.swing.JMenuItem" name="menuRegistrarPag">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar"/>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -35,6 +50,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Configura&#xe7;&#xf5;es"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuConfigSistema">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sistema"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>

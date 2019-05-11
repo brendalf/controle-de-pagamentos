@@ -14,6 +14,7 @@ import exercicio1.business.GerenteGeralAutorizadora;
 import exercicio1.business.GerenteImediatoAutorizadora;
 import exercicio1.business.Pagamento;
 import exercicio1.business.ProcessadoraPagamento;
+import exercicio1.presenter.HomePresenter;
 import exercicio1.presenter.LoginPresenter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,7 +54,7 @@ public class Principal {
 //            processadora.processar(new Pagamento(Math.random() * 20000, new Date(dataVencimento), "Pagamento " + i + ((Math.random() * 10 <= 3) ? " Emergencial" : ""), (Math.random() * 10 <= 5) ? f1 : f2));
 //        }
 
-        new LoginPresenter();
+        new HomePresenter();
     }
     
 }

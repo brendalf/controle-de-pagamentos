@@ -5,6 +5,8 @@
  */
 package exercicio1.view;
 
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author breno
@@ -30,31 +32,50 @@ public class HomeView extends javax.swing.JFrame {
         txtUsuarioLogado = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFuncionarios = new javax.swing.JMenu();
+        menuConsultarFunc = new javax.swing.JMenuItem();
+        menuRegistrarFunc = new javax.swing.JMenuItem();
         menuPagamentos = new javax.swing.JMenu();
-        menuAprovarPagamentos = new javax.swing.JMenuItem();
-        menuCadastrarPagamentos = new javax.swing.JMenuItem();
-        menuListarPagamentos = new javax.swing.JMenuItem();
+        menuAutorizarPag = new javax.swing.JMenuItem();
+        menuConsultarPag = new javax.swing.JMenuItem();
+        menuRegistrarPag = new javax.swing.JMenuItem();
         menuConfig = new javax.swing.JMenu();
+        menuConfigSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         menuFuncionarios.setText("Funcionarios");
+
+        menuConsultarFunc.setText("Consultar");
+        menuFuncionarios.add(menuConsultarFunc);
+
+        menuRegistrarFunc.setText("Registrar");
+        menuFuncionarios.add(menuRegistrarFunc);
+
         jMenuBar1.add(menuFuncionarios);
 
         menuPagamentos.setText("Pagamentos");
 
-        menuAprovarPagamentos.setText("Aprovar");
-        menuPagamentos.add(menuAprovarPagamentos);
+        menuAutorizarPag.setText("Autorizar");
+        menuPagamentos.add(menuAutorizarPag);
 
-        menuCadastrarPagamentos.setText("Cadastrar");
-        menuPagamentos.add(menuCadastrarPagamentos);
+        menuConsultarPag.setText("Consultar");
+        menuConsultarPag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarPagActionPerformed(evt);
+            }
+        });
+        menuPagamentos.add(menuConsultarPag);
 
-        menuListarPagamentos.setText("Listar");
-        menuPagamentos.add(menuListarPagamentos);
+        menuRegistrarPag.setText("Registrar");
+        menuPagamentos.add(menuRegistrarPag);
 
         jMenuBar1.add(menuPagamentos);
 
         menuConfig.setText("Configurações");
+
+        menuConfigSistema.setText("Sistema");
+        menuConfig.add(menuConfigSistema);
+
         jMenuBar1.add(menuConfig);
 
         setJMenuBar(jMenuBar1);
@@ -78,6 +99,10 @@ public class HomeView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuConsultarPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarPagActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuConsultarPagActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,12 +142,41 @@ public class HomeView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem menuAprovarPagamentos;
-    private javax.swing.JMenuItem menuCadastrarPagamentos;
+    private javax.swing.JMenuItem menuAutorizarPag;
     private javax.swing.JMenu menuConfig;
+    private javax.swing.JMenuItem menuConfigSistema;
+    private javax.swing.JMenuItem menuConsultarFunc;
+    private javax.swing.JMenuItem menuConsultarPag;
     private javax.swing.JMenu menuFuncionarios;
-    private javax.swing.JMenuItem menuListarPagamentos;
     private javax.swing.JMenu menuPagamentos;
+    private javax.swing.JMenuItem menuRegistrarFunc;
+    private javax.swing.JMenuItem menuRegistrarPag;
     private javax.swing.JLabel txtUsuarioLogado;
     // End of variables declaration//GEN-END:variables
+
+    public JMenuItem getMenuAutorizarPag() {
+        return menuAutorizarPag;
+    }
+
+    public JMenuItem getMenuConfigSistema() {
+        return menuConfigSistema;
+    }
+
+    public JMenuItem getMenuConsultarFunc() {
+        return menuConsultarFunc;
+    }
+
+    public JMenuItem getMenuConsultarPag() {
+        return menuConsultarPag;
+    }
+
+    public JMenuItem getMenuRegistrarFunc() {
+        return menuRegistrarFunc;
+    }
+
+    public JMenuItem getMenuRegistrarPag() {
+        return menuRegistrarPag;
+    }
+
+    
 }

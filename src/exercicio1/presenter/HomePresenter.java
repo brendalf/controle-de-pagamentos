@@ -6,6 +6,8 @@
 package exercicio1.presenter;
 
 import exercicio1.view.HomeView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -17,6 +19,29 @@ public class HomePresenter {
     public HomePresenter() {
         this.homeView = new HomeView();
         this.homeView.setVisible(true);
+        this.homeView.setTitle("Sistema");
+        
+        this.homeView.getMenuConsultarFunc().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                goToListarFuncionarios();
+            }
+        });
     }
     
+    private void goToListarFuncionarios() {
+        ListarFuncionariosPresenter listarFuncionariosPresenter = new ListarFuncionariosPresenter();
+    }
+
+    private void goToAddFuncionario() {
+        
+    }
+    
+    private void goToAddPagamento() {
+        
+    }
+    
+    private void goToListarPagamentos() {
+        
+    }
 }
