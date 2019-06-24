@@ -18,7 +18,7 @@ public class ConfigurarSistemaPresenter {
     public ConfigurarSistemaPresenter() {
         this.view = new ConfigurarSistemaView();
         this.view.setVisible(true);
-        this.view.setTitle("Listar Pagamentos");
+        this.view.setTitle("Configurar Sistema");
         
         this.view.getBtCancelar().addActionListener((ActionEvent e) -> {
             dispose();

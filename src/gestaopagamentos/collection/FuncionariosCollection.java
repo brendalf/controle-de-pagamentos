@@ -35,4 +35,8 @@ public class FuncionariosCollection {
     public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
     }
+
+    public void addFuncionario(Funcionario funcionario) {
+        this.funcionarios.add(funcionario);
+    }
 }

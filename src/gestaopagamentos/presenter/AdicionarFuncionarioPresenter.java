@@ -5,8 +5,11 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.business.Funcionario;
+import gestaopagamentos.collection.FuncionariosCollection;
 import gestaopagamentos.view.AdicionarFuncionarioView;
 import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,10 +26,32 @@ public class AdicionarFuncionarioPresenter {
         this.view.getBtCancelar().addActionListener((ActionEvent e) -> {
             dispose();
         });
+        
+        this.view.getBtSalvar().addActionListener((ActionEvent e) -> {
+            addFuncionario();
+        });
     }
     
     private void dispose() {
         this.view.setVisible(false);
         this.view.dispose();
+    }
+
+    private void addFuncionario() {
+        try {
+            String nome = this.view.getTxtNome().getText();
+            int idade = Integer.parseInt(this.view.getTxtIdade().getText());
+            String cargo = (String) this.view.getListCargo().getSelectedItem();
+            
+            Funcionario funcionario = new Funcionario(nome, cargo, idade);
+            FuncionariosCollection.getInstance().addFuncionario(funcionario);
+            
+            JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");
+            dispose();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Idade deve ser um numeral");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 }

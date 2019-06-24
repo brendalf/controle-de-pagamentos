@@ -19,7 +19,15 @@ public class Funcionario {
         
     }
 
-    public Funcionario(String nome, String cargo, int idade) {
+    public Funcionario(String nome, String cargo, int idade) throws Exception {
+        if(nome == null || nome.trim().isEmpty()) {
+            throw new Exception("Nome invalido");
+        } else if(cargo == null || cargo.trim().isEmpty()) {
+            throw new Exception("Cargo invalido");
+        } else if(idade <= 0) {
+            throw new Exception("Idade invalida");
+        }
+        
         this.nome = nome;
         this.cargo = cargo;
         this.idade = idade;
