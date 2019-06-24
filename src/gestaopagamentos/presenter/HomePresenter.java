@@ -31,6 +31,14 @@ public class HomePresenter {
         this.view.getMenuRegistrarPag().addActionListener((ActionEvent e) -> {
             goToAddPagamento();
         });
+        
+        this.view.getMenuConsultarPag().addActionListener((ActionEvent e) -> {
+            goToListarPagamentos();
+        });
+        
+        this.view.getMenuConfigSistema().addActionListener((ActionEvent e) -> {
+            goToConfigSistema();
+        });
     }
     
     private void goToListarFuncionarios() {
@@ -38,7 +46,7 @@ public class HomePresenter {
     }
 
     private void goToAddFuncionario() {
-        RegistrarFuncionarioPresenter presenter = new RegistrarFuncionarioPresenter();
+        AdicionarFuncionarioPresenter presenter = new AdicionarFuncionarioPresenter();
     }
     
     private void goToAddPagamento() {
@@ -46,6 +54,10 @@ public class HomePresenter {
     }
     
     private void goToListarPagamentos() {
-        
+        ListarPagamentosPresenter presenter = new ListarPagamentosPresenter();
+    }
+
+    private void goToConfigSistema() {
+        ConfigurarSistemaPresenter presenter = new ConfigurarSistemaPresenter();
     }
 }

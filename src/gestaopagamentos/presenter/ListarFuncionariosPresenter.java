@@ -30,7 +30,7 @@ public class ListarFuncionariosPresenter {
     }
     
     private void goToAddFuncionario() {
-        RegistrarFuncionarioPresenter presenter = new RegistrarFuncionarioPresenter();
+        AdicionarFuncionarioPresenter presenter = new AdicionarFuncionarioPresenter();
     }
 
     private void dispose() {

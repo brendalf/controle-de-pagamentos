@@ -53,8 +53,7 @@ public class Principal {
 //            
 //            processadora.processar(new Pagamento(Math.random() * 20000, new Date(dataVencimento), "Pagamento " + i + ((Math.random() * 10 <= 3) ? " Emergencial" : ""), (Math.random() * 10 <= 5) ? f1 : f2));
 //        }
-
-        new HomePresenter();
+        HomePresenter homePresenter = new HomePresenter();
     }
     
 }

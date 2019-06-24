@@ -46,7 +46,7 @@ public class AdicionarPagamentoView extends javax.swing.JFrame {
 
         jLabel1.setText("Valor");
 
-        jLabel2.setText("Vencimento");
+        jLabel2.setText("Vencimento (aaaa-mm-dd)");
 
         jLabel3.setText("Descrição");
 
@@ -75,7 +75,7 @@ public class AdicionarPagamentoView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtVencimento, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addComponent(txtVencimento, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
                             .addComponent(txtDescricao)
                             .addComponent(listFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

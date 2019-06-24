@@ -19,6 +19,7 @@ public class Pagamento {
     private Date dataPagamento;
     private String descricao;
     private Funcionario solicitante;
+    private Funcionario aprovador;
     private ArrayList<DetalhePagamento> detalhes;
 
     private Pagamento() {

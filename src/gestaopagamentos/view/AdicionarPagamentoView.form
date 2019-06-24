@@ -39,7 +39,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtVencimento" pref="108" max="32767" attributes="0"/>
+                              <Component id="txtVencimento" pref="159" max="32767" attributes="0"/>
                           </Group>
                           <Component id="txtDescricao" max="32767" attributes="0"/>
                           <Component id="listFuncionario" alignment="0" max="32767" attributes="0"/>
@@ -109,7 +109,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Vencimento"/>
+        <Property name="text" type="java.lang.String" value="Vencimento (aaaa-mm-dd)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
