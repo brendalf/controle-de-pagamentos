@@ -19,6 +19,8 @@ public abstract class AutorizadoraPagamento {
     public AutorizadoraPagamento(boolean metodoHabilitado) {
         this.metodoHabilitado = metodoHabilitado;
     }
+    
+    public abstract String getNomeAutorizadora();
 
     public boolean isMetodoHabilitado() {
         return metodoHabilitado;

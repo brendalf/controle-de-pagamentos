@@ -15,4 +15,9 @@ public class GerenteGeralAutorizadora extends AutorizadoraPagamento {
     public boolean autorizar(Pagamento pagamento) {
         return (pagamento.getValor() <= 1500);
     }
+    
+    @Override
+    public String getNomeAutorizadora() {
+        return "Gerente Geral";
+    }
 }

@@ -15,4 +15,9 @@ public class EmergencialAutorizadora extends AutorizadoraPagamento {
     public boolean autorizar(Pagamento pagamento) {
         return (pagamento.getDescricao().contains("Emergencial"));
     }
+    
+    @Override
+    public String getNomeAutorizadora() {
+        return "Emergencial";
+    }
 }
