@@ -5,7 +5,6 @@
  */
 package gestaopagamentos.presenter;
 
-import gestaopagamentos.business.Funcionario;
 import gestaopagamentos.collection.FuncionariosCollection;
 import gestaopagamentos.view.ListarFuncionariosView;
 import java.awt.event.ActionEvent;
@@ -32,6 +31,9 @@ public class ListarFuncionariosPresenter {
             goToAddFuncionario();
         });
                
+        Object colunas[] = {"Nome", "Cargo", "Idade", "Faltas"};
+        this.tableModel = new DefaultTableModel(colunas, 0);
+        this.view.getTableFuncionarios().setModel(this.tableModel);
         fillTable();
     }
     
@@ -45,9 +47,7 @@ public class ListarFuncionariosPresenter {
     }
 
     private void fillTable() {
-        Object colunas[] = {"Nome", "Cargo", "Idade", "Faltas"};
-        this.tableModel = new DefaultTableModel(colunas, 0);
-        this.view.getTableFuncionarios().setModel(this.tableModel);
+        clearTable();
         
         FuncionariosCollection.getInstance().getFuncionarios().forEach((funcionario) -> {
             this.tableModel.addRow(
@@ -59,5 +59,10 @@ public class ListarFuncionariosPresenter {
                     }
             );
         });
+    }
+    
+    private void clearTable() {
+        while(this.tableModel.getRowCount() > 0)
+            this.tableModel.removeRow(0);
     }
 }

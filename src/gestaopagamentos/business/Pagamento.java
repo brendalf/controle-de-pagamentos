@@ -26,7 +26,17 @@ public class Pagamento {
         
     }
 
-    public Pagamento(double valor, Date dataVencimento, String descricao, Funcionario solicitante) {
+    public Pagamento(double valor, Date dataVencimento, String descricao, Funcionario solicitante) throws Exception {
+        if(descricao == null || descricao.trim().isEmpty()) {
+            throw new Exception("Descricao invalida");
+        } else if(solicitante == null) {
+            throw new Exception("Solicitante invalido");
+        } else if(dataVencimento == null) {
+            throw new Exception("Data de vencimento invalida");
+        } else if(valor <= 0) {
+            throw new Exception("Valor invalido");
+        }
+        
         this.valor = valor;
         this.dataVencimento = dataVencimento;
         this.descricao = descricao;

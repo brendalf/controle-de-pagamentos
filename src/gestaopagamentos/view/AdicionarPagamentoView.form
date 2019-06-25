@@ -109,7 +109,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Vencimento (aaaa-mm-dd)"/>
+        <Property name="text" type="java.lang.String" value="Vencimento (mm/dd/aaaa)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

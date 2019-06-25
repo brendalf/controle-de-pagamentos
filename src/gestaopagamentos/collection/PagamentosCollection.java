@@ -12,19 +12,19 @@ import java.util.ArrayList;
  *
  * @author breno
  */
-public class PagamentoCollection {
+public class PagamentosCollection {
     
     private ArrayList<Pagamento> pagamentos;
-    private static PagamentoCollection instance;
+    private static PagamentosCollection instance;
     
-    public static PagamentoCollection getInstance(){
+    public static PagamentosCollection getInstance(){
         if(instance == null){
-            instance = new PagamentoCollection();
+            instance = new PagamentosCollection();
         }
         return instance;
     }
     
-    private PagamentoCollection() {
+    private PagamentosCollection() {
         this.pagamentos = new ArrayList<>();
     }
 
@@ -34,5 +34,9 @@ public class PagamentoCollection {
 
     public void setPagamentos(ArrayList<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
+    }
+
+    public void addPagamento(Pagamento pagamento) {
+        this.pagamentos.add(pagamento);
     }
 }

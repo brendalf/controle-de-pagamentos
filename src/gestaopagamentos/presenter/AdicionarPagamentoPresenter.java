@@ -5,8 +5,16 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.business.Funcionario;
+import gestaopagamentos.business.Pagamento;
+import gestaopagamentos.collection.FuncionariosCollection;
+import gestaopagamentos.collection.PagamentosCollection;
 import gestaopagamentos.view.AdicionarPagamentoView;
 import java.awt.event.ActionEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,10 +31,51 @@ public class AdicionarPagamentoPresenter {
         this.view.getBtCancelar().addActionListener((ActionEvent e) -> {
             dispose();
         });
+        
+        this.view.getBtSalvar().addActionListener((ActionEvent e) -> {
+            addPagamento();
+        });
+        
+        fillList();
+        
+        if(FuncionariosCollection.getInstance().getFuncionarios().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum funcionario cadastrado");
+        }
     }
     
     private void dispose() {
         this.view.setVisible(false);
         this.view.dispose();
+    }
+
+    private void addPagamento() {
+        try {
+            String descricao = this.view.getTxtDescricao().getText();
+            String vencimento = this.view.getTxtVencimento().getText();
+            float valor = Float.parseFloat(this.view.getTxtValor().getText());
+            
+            DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+            Date dataVencimento = df.parse(vencimento);
+            
+            int funcionarioSelected = this.view.getListFuncionario().getSelectedIndex();
+            Funcionario solicitante = FuncionariosCollection.getInstance().getFuncionarios().get(funcionarioSelected);
+            Pagamento pagamento = new Pagamento(valor, dataVencimento, descricao, solicitante);
+            PagamentosCollection.getInstance().addPagamento(pagamento);
+            
+            JOptionPane.showMessageDialog(null, "Pagamento cadastrado com sucesso");
+            dispose();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor deve ser um numeral");
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Verifique se o formato da data de vencimento");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    private void fillList() {
+        FuncionariosCollection.getInstance().getFuncionarios().forEach((funcionario) -> {
+            this.view.getListFuncionario().addItem(funcionario.getNome());
+        });
     }
 }

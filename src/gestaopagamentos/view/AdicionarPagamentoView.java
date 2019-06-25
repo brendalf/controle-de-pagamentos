@@ -46,7 +46,7 @@ public class AdicionarPagamentoView extends javax.swing.JFrame {
 
         jLabel1.setText("Valor");
 
-        jLabel2.setText("Vencimento (aaaa-mm-dd)");
+        jLabel2.setText("Vencimento (mm/dd/aaaa)");
 
         jLabel3.setText("Descrição");
 
