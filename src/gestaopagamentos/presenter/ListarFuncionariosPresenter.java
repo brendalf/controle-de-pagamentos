@@ -7,7 +7,9 @@ package gestaopagamentos.presenter;
 
 import gestaopagamentos.collection.FuncionariosCollection;
 import gestaopagamentos.view.ListarFuncionariosView;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +22,10 @@ public class ListarFuncionariosPresenter {
     
     public ListarFuncionariosPresenter() {
         this.view = new ListarFuncionariosView();
+        this.view.setLocation(
+                (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
+                (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
+        this.view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.view.setVisible(true);
         this.view.setTitle("Listar Funcionários");
         

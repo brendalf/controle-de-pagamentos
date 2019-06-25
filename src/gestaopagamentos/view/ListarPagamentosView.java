@@ -34,6 +34,8 @@ public class ListarPagamentosView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePagamentos = new javax.swing.JTable();
         btNovoPagamento = new javax.swing.JButton();
+        btAprovarRejeitar = new javax.swing.JButton();
+        btVerDetalhes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +61,15 @@ public class ListarPagamentosView extends javax.swing.JFrame {
 
         btNovoPagamento.setText("Novo Pagamento");
 
+        btAprovarRejeitar.setText("Aprovar | Rejeitar");
+        btAprovarRejeitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAprovarRejeitarActionPerformed(evt);
+            }
+        });
+
+        btVerDetalhes.setText("Ver Detalhes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,8 +80,12 @@ public class ListarPagamentosView extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btNovoPagamento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNovoPagamento)))
+                        .addComponent(btVerDetalhes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btAprovarRejeitar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -81,12 +96,18 @@ public class ListarPagamentosView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar)
-                    .addComponent(btNovoPagamento))
+                    .addComponent(btNovoPagamento)
+                    .addComponent(btAprovarRejeitar)
+                    .addComponent(btVerDetalhes))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btAprovarRejeitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAprovarRejeitarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btAprovarRejeitarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,8 +145,10 @@ public class ListarPagamentosView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAprovarRejeitar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btNovoPagamento;
+    private javax.swing.JButton btVerDetalhes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePagamentos;
     // End of variables declaration//GEN-END:variables
@@ -142,5 +165,11 @@ public class ListarPagamentosView extends javax.swing.JFrame {
         return tablePagamentos;
     }
 
-    
+    public JButton getBtAprovarRejeitar() {
+        return btAprovarRejeitar;
+    }
+
+    public JButton getBtVerDetalhes() {
+        return btVerDetalhes;
+    }
 }

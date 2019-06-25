@@ -29,8 +29,12 @@
                   <Component id="jScrollPane1" pref="802" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btNovoPagamento" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btVerDetalhes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btAprovarRejeitar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -46,6 +50,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btNovoPagamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btAprovarRejeitar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btVerDetalhes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -121,6 +127,19 @@
     <Component class="javax.swing.JButton" name="btNovoPagamento">
       <Properties>
         <Property name="text" type="java.lang.String" value="Novo Pagamento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btAprovarRejeitar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aprovar | Rejeitar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAprovarRejeitarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btVerDetalhes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver Detalhes"/>
       </Properties>
     </Component>
   </SubComponents>

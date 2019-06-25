@@ -7,7 +7,9 @@ package gestaopagamentos.presenter;
 
 import gestaopagamentos.collection.PagamentosCollection;
 import gestaopagamentos.view.ListarPagamentosView;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +22,10 @@ public class ListarPagamentosPresenter {
     
     public ListarPagamentosPresenter() {
         this.view = new ListarPagamentosView();
+        this.view.setLocation(
+                (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
+                (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
+        this.view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.view.setVisible(true);
         this.view.setTitle("Listar Pagamentos");
         
@@ -31,7 +37,7 @@ public class ListarPagamentosPresenter {
             goToAddPagamento();
         });
         
-        Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Aprovado por"};
+        Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Situacao"};
         this.tableModel = new DefaultTableModel(colunas, 0);
         this.view.getTablePagamentos().setModel(this.tableModel);
         fillTable();
@@ -57,7 +63,7 @@ public class ListarPagamentosPresenter {
                         pagamento.getDataVencimento().toString(),
                         pagamento.getSolicitante().getNome(),
                         pagamento.getSolicitante().getCargo(),
-                        ""
+                        pagamento.getSituacaoNome()
                     }
             );
         });

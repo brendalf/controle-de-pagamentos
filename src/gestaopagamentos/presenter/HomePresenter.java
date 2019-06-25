@@ -5,8 +5,9 @@
  */
 package gestaopagamentos.presenter;
 
-import gestaopagamentos.persistence.DAO;
+import gestaopagamentos.persistence.SalvarDados;
 import gestaopagamentos.view.HomeView;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
 /**
@@ -18,6 +19,9 @@ public class HomePresenter {
     
     public HomePresenter() {
         this.view = new HomeView();
+        this.view.setLocation(
+                (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
+                (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
         this.view.setVisible(true);
         this.view.setTitle("Sistema de Gestão de Pagamentos");
         
@@ -67,11 +71,11 @@ public class HomePresenter {
     }
     
     private void goToExportarDados() {
-        DAO.exportar();
+        SalvarDados.exportar();
     }
     
     private void goToImportarDados() {
-        DAO.importar();
+        SalvarDados.importar();
     }
 
     private void goToConfigSistema() {

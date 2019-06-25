@@ -10,10 +10,12 @@ import gestaopagamentos.business.Pagamento;
 import gestaopagamentos.collection.FuncionariosCollection;
 import gestaopagamentos.collection.PagamentosCollection;
 import gestaopagamentos.view.AdicionarPagamentoView;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,10 @@ public class AdicionarPagamentoPresenter {
     
     public AdicionarPagamentoPresenter() {
         this.view = new AdicionarPagamentoView();
+        this.view.setLocation(
+                (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
+                (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
+        this.view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.view.setVisible(true);
         this.view.setTitle("Novo Pagamento");
         
