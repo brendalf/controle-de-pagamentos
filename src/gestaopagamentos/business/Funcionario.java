@@ -5,11 +5,13 @@
  */
 package gestaopagamentos.business;
 
+import java.io.Serializable;
+
 /**
  *
  * @author breno
  */
-public class Funcionario {
+public class Funcionario implements Serializable {
     private String nome;
     private String cargo;
     private int idade;

@@ -62,14 +62,14 @@ public class AdicionarPagamentoPresenter {
             Pagamento pagamento = new Pagamento(valor, dataVencimento, descricao, solicitante);
             PagamentosCollection.getInstance().addPagamento(pagamento);
             
-            JOptionPane.showMessageDialog(null, "Pagamento cadastrado com sucesso");
+            JOptionPane.showMessageDialog(this.view, "Pagamento cadastrado com sucesso");
             dispose();
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Valor deve ser um numeral");
+            JOptionPane.showMessageDialog(this.view, "Valor deve ser um numeral");
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(null, "Verifique se o formato da data de vencimento");
+            JOptionPane.showMessageDialog(this.view, "Verifique se o formato da data de vencimento");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this.view, e.getMessage());
         }
     }
 

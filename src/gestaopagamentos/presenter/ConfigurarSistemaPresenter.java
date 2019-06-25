@@ -5,7 +5,6 @@
  */
 package gestaopagamentos.presenter;
 
-import gestaopagamentos.business.AutorizadoraPagamento;
 import gestaopagamentos.collection.AutorizadoresCollection;
 import gestaopagamentos.view.ConfigurarSistemaView;
 import java.awt.event.ActionEvent;
@@ -77,7 +76,7 @@ public class ConfigurarSistemaPresenter {
             AutorizadoresCollection.getInstance().getAutorizadores().get(i).setMetodoHabilitado((boolean) this.view.getTableCargos().getValueAt(i, 1));
         }
         
-        JOptionPane.showMessageDialog(null, "Sistema configurado com sucesso");
+        JOptionPane.showMessageDialog(this.view, "Sistema configurado com sucesso");
         dispose();
     }
 }

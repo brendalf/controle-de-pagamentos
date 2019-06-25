@@ -6,13 +6,14 @@
 package gestaopagamentos.collection;
 
 import gestaopagamentos.business.Pagamento;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author breno
  */
-public class PagamentosCollection {
+public class PagamentosCollection implements Serializable {
     
     private ArrayList<Pagamento> pagamentos;
     private static PagamentosCollection instance;

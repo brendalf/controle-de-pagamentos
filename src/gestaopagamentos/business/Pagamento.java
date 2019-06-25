@@ -5,6 +5,7 @@
  */
 package gestaopagamentos.business;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.Date;
  *
  * @author breno
  */
-public class Pagamento {
+public class Pagamento implements Serializable {
     private double valor;
     private Date dataVencimento;
     private Date dataPagamento;

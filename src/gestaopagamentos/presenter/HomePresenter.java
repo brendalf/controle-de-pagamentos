@@ -5,6 +5,7 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.persistence.DAO;
 import gestaopagamentos.view.HomeView;
 import java.awt.event.ActionEvent;
 
@@ -36,6 +37,14 @@ public class HomePresenter {
             goToListarPagamentos();
         });
         
+        this.view.getMenuExportarDados().addActionListener((ActionEvent e) -> {
+            goToExportarDados();
+        });
+        
+        this.view.getMenuImportarDados().addActionListener((ActionEvent e) -> {
+            goToImportarDados();
+        });
+        
         this.view.getMenuConfigSistema().addActionListener((ActionEvent e) -> {
             goToConfigSistema();
         });
@@ -55,6 +64,14 @@ public class HomePresenter {
     
     private void goToListarPagamentos() {
         ListarPagamentosPresenter presenter = new ListarPagamentosPresenter();
+    }
+    
+    private void goToExportarDados() {
+        DAO.exportar();
+    }
+    
+    private void goToImportarDados() {
+        DAO.importar();
     }
 
     private void goToConfigSistema() {

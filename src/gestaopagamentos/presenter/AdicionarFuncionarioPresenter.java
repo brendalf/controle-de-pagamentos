@@ -46,12 +46,12 @@ public class AdicionarFuncionarioPresenter {
             Funcionario funcionario = new Funcionario(nome, cargo, idade);
             FuncionariosCollection.getInstance().addFuncionario(funcionario);
             
-            JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");
+            JOptionPane.showMessageDialog(this.view, "Funcionario cadastrado com sucesso");
             dispose();
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Idade deve ser um numeral");
+            JOptionPane.showMessageDialog(this.view, "Idade deve ser um numeral");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this.view, e.getMessage());
         }
     }
 }

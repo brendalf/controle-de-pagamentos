@@ -38,6 +38,8 @@ public class HomeView extends javax.swing.JFrame {
         menuConsultarPag = new javax.swing.JMenuItem();
         menuRegistrarPag = new javax.swing.JMenuItem();
         menuConfig = new javax.swing.JMenu();
+        menuExportarDados = new javax.swing.JMenuItem();
+        menuImportarDados = new javax.swing.JMenuItem();
         menuConfigSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,6 +70,12 @@ public class HomeView extends javax.swing.JFrame {
         jMenuBar1.add(menuPagamentos);
 
         menuConfig.setText("Configurações");
+
+        menuExportarDados.setText("Exportar Dados");
+        menuConfig.add(menuExportarDados);
+
+        menuImportarDados.setText("Importar Dados");
+        menuConfig.add(menuImportarDados);
 
         menuConfigSistema.setText("Sistema");
         menuConfig.add(menuConfigSistema);
@@ -142,7 +150,9 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuConfigSistema;
     private javax.swing.JMenuItem menuConsultarFunc;
     private javax.swing.JMenuItem menuConsultarPag;
+    private javax.swing.JMenuItem menuExportarDados;
     private javax.swing.JMenu menuFuncionarios;
+    private javax.swing.JMenuItem menuImportarDados;
     private javax.swing.JMenu menuPagamentos;
     private javax.swing.JMenuItem menuRegistrarFunc;
     private javax.swing.JMenuItem menuRegistrarPag;
@@ -168,4 +178,12 @@ public class HomeView extends javax.swing.JFrame {
     public JMenuItem getMenuRegistrarPag() {
         return menuRegistrarPag;
     }    
+
+    public JMenuItem getMenuExportarDados() {
+        return menuExportarDados;
+    }
+
+    public JMenuItem getMenuImportarDados() {
+        return menuImportarDados;
+    }
 }
