@@ -5,6 +5,7 @@
  */
 package gestaopagamentos.view;
 
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 
 /**
@@ -29,14 +30,18 @@ public class HomeView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtUsuarioLogado = new javax.swing.JLabel();
+        txtNomeUsuarioLogado = new javax.swing.JLabel();
+        txtCargoUsuarioLogado = new javax.swing.JLabel();
+        labelPagamentos = new javax.swing.JLabel();
+        txtPagamentosRegistrados = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFuncionarios = new javax.swing.JMenu();
-        menuConsultarFunc = new javax.swing.JMenuItem();
         menuRegistrarFunc = new javax.swing.JMenuItem();
+        menuConsultarFunc = new javax.swing.JMenuItem();
+        menuImportarFuncionarios = new javax.swing.JMenuItem();
         menuPagamentos = new javax.swing.JMenu();
-        menuConsultarPag = new javax.swing.JMenuItem();
         menuRegistrarPag = new javax.swing.JMenuItem();
+        menuConsultarPag = new javax.swing.JMenuItem();
         menuConfig = new javax.swing.JMenu();
         menuExportarDados = new javax.swing.JMenuItem();
         menuImportarDados = new javax.swing.JMenuItem();
@@ -44,17 +49,28 @@ public class HomeView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        labelPagamentos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelPagamentos.setText("Pagamentos Registrados:");
+
+        txtPagamentosRegistrados.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
         menuFuncionarios.setText("Funcionarios");
+
+        menuRegistrarFunc.setText("Novo");
+        menuFuncionarios.add(menuRegistrarFunc);
 
         menuConsultarFunc.setText("Consultar");
         menuFuncionarios.add(menuConsultarFunc);
 
-        menuRegistrarFunc.setText("Registrar");
-        menuFuncionarios.add(menuRegistrarFunc);
+        menuImportarFuncionarios.setText("Importar");
+        menuFuncionarios.add(menuImportarFuncionarios);
 
         jMenuBar1.add(menuFuncionarios);
 
         menuPagamentos.setText("Pagamentos");
+
+        menuRegistrarPag.setText("Novo");
+        menuPagamentos.add(menuRegistrarPag);
 
         menuConsultarPag.setText("Consultar");
         menuConsultarPag.addActionListener(new java.awt.event.ActionListener() {
@@ -63,9 +79,6 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
         menuPagamentos.add(menuConsultarPag);
-
-        menuRegistrarPag.setText("Registrar");
-        menuPagamentos.add(menuRegistrarPag);
 
         jMenuBar1.add(menuPagamentos);
 
@@ -88,17 +101,37 @@ public class HomeView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(788, Short.MAX_VALUE)
-                .addComponent(txtUsuarioLogado)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtCargoUsuarioLogado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNomeUsuarioLogado)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelPagamentos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPagamentosRegistrados)))
+                        .addGap(0, 595, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtUsuarioLogado)
-                .addContainerGap(561, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtCargoUsuarioLogado))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelPagamentos)
+                            .addComponent(txtPagamentosRegistrados))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 533, Short.MAX_VALUE)
+                        .addComponent(txtNomeUsuarioLogado)))
+                .addContainerGap())
         );
 
         pack();
@@ -146,6 +179,7 @@ public class HomeView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel labelPagamentos;
     private javax.swing.JMenu menuConfig;
     private javax.swing.JMenuItem menuConfigSistema;
     private javax.swing.JMenuItem menuConsultarFunc;
@@ -153,10 +187,13 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuExportarDados;
     private javax.swing.JMenu menuFuncionarios;
     private javax.swing.JMenuItem menuImportarDados;
+    private javax.swing.JMenuItem menuImportarFuncionarios;
     private javax.swing.JMenu menuPagamentos;
     private javax.swing.JMenuItem menuRegistrarFunc;
     private javax.swing.JMenuItem menuRegistrarPag;
-    private javax.swing.JLabel txtUsuarioLogado;
+    private javax.swing.JLabel txtCargoUsuarioLogado;
+    private javax.swing.JLabel txtNomeUsuarioLogado;
+    private javax.swing.JLabel txtPagamentosRegistrados;
     // End of variables declaration//GEN-END:variables
 
     public JMenuItem getMenuConfigSistema() {
@@ -186,4 +223,22 @@ public class HomeView extends javax.swing.JFrame {
     public JMenuItem getMenuImportarDados() {
         return menuImportarDados;
     }
+
+    public JLabel getTxtCargoUsuarioLogado() {
+        return txtCargoUsuarioLogado;
+    }
+
+    public JLabel getTxtNomeUsuarioLogado() {
+        return txtNomeUsuarioLogado;
+    }
+
+    public JLabel getTxtPagamentosRegistrados() {
+        return txtPagamentosRegistrados;
+    }
+
+    public JMenuItem getMenuImportarFuncionarios() {
+        return menuImportarFuncionarios;
+    }
+    
+    
 }

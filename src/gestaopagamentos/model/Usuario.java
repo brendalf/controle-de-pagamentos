@@ -29,4 +29,8 @@ public class Usuario {
     public String getPasswd() {
         return passwd;
     }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
 }

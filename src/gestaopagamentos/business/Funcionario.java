@@ -36,6 +36,16 @@ public class Funcionario implements Serializable {
         this.numeroFaltas = 0;
     }
 
+    public Funcionario(String nome, String cargo, int idade, int numeroFaltas) throws Exception {
+        this(nome, cargo, idade);
+        
+        if(numeroFaltas < 0) {
+            throw new Exception("Faltas invalida");
+        }
+
+        this.numeroFaltas = numeroFaltas;
+    }
+
     public String getNome() {
         return nome;
     }

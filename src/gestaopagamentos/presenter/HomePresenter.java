@@ -5,6 +5,8 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.collection.UsuarioLogado;
+import gestaopagamentos.persistence.ImportarFuncionariosCSV;
 import gestaopagamentos.persistence.SalvarDados;
 import gestaopagamentos.view.HomeView;
 import java.awt.Toolkit;
@@ -24,6 +26,9 @@ public class HomePresenter {
                 (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
         this.view.setVisible(true);
         this.view.setTitle("Sistema de Gestão de Pagamentos");
+        
+        this.view.getTxtNomeUsuarioLogado().setText(UsuarioLogado.getInstance().getUsuario().getFuncionario().getNome());
+        this.view.getTxtCargoUsuarioLogado().setText(UsuarioLogado.getInstance().getUsuario().getFuncionario().getCargo());
         
         this.view.getMenuConsultarFunc().addActionListener((ActionEvent e) -> {
             goToListarFuncionarios();
@@ -51,6 +56,10 @@ public class HomePresenter {
         
         this.view.getMenuConfigSistema().addActionListener((ActionEvent e) -> {
             goToConfigSistema();
+        });
+        
+        this.view.getMenuImportarFuncionarios().addActionListener((ActionEvent e) -> {
+            goToImportarFuncionarios();
         });
     }
     
@@ -80,5 +89,9 @@ public class HomePresenter {
 
     private void goToConfigSistema() {
         ConfigurarSistemaPresenter presenter = new ConfigurarSistemaPresenter();
+    }
+
+    private void goToImportarFuncionarios() {
+        ImportarFuncionariosCSV.importar();
     }
 }
