@@ -28,7 +28,7 @@ public class GerenteImediatoAutorizadora extends IAutorizadoraPagamento {
                 Collections.shuffle(funcionarios);
                 
                 for(Funcionario funcionario : funcionarios) {
-                    if(funcionario.getCargo().equals(getNomeAutorizadora()) && funcionario.getNumeroFaltas()<= 15) {
+                    if(funcionario.getCargo().equals(getNomeAutorizadora()) && funcionario.getFaltas()<= 15) {
                         pagamento.addDetalhe("Aprovado pelo " + getNomeAutorizadora(), UsuarioLogado.getInstance().getUsuario().getUser());
                         pagamento.setDataPagamento(new Date());
                         pagamento.setAprovador(funcionario);

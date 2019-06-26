@@ -83,7 +83,7 @@ public class HomePresenter implements IObserver {
     }
 
     private void goToAddFuncionario() {
-        AdicionarFuncionarioPresenter presenter = new AdicionarFuncionarioPresenter();
+        ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter();
     }
     
     private void goToAddPagamento() {

@@ -5,6 +5,7 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.business.Funcionario;
 import gestaopagamentos.collection.FuncionariosCollection;
 import gestaopagamentos.observer.IObserver;
 import gestaopagamentos.view.ListarFuncionariosView;
@@ -13,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -46,6 +48,10 @@ public class ListarFuncionariosPresenter implements IObserver {
         this.view.getBtNovoFuncionario().addActionListener((ActionEvent e) -> {
             goToAddFuncionario();
         });
+        
+        this.view.getBtVerFuncionario().addActionListener((ActionEvent e) -> {
+            goToVerFuncionario();
+        });
                
         Object colunas[] = {"Nome", "Cargo", "Idade", "Faltas"};
         this.tableModel = new DefaultTableModel(colunas, 0);
@@ -56,7 +62,18 @@ public class ListarFuncionariosPresenter implements IObserver {
     }
     
     private void goToAddFuncionario() {
-        AdicionarFuncionarioPresenter presenter = new AdicionarFuncionarioPresenter();
+        ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter();
+    }
+    
+    private void goToVerFuncionario() {
+        int selected = this.view.getTableFuncionarios().getSelectedRow();
+        if(selected == -1) {
+            JOptionPane.showMessageDialog(this.view, "Selecione um funcionario");
+            return;
+        }
+        
+        Funcionario funcionario = FuncionariosCollection.getInstance().getFuncionarios().get(selected);
+        ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter(funcionario);
     }
 
     private void dispose() {
@@ -74,7 +91,7 @@ public class ListarFuncionariosPresenter implements IObserver {
                         funcionario.getNome(),
                         funcionario.getCargo(),
                         funcionario.getIdade(),
-                        funcionario.getNumeroFaltas()
+                        funcionario.getFaltas()
                     }
             );
         });

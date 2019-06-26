@@ -86,7 +86,7 @@ public class AdicionarPagamentoPresenter implements IObserver {
             
             Funcionario solicitante = FuncionariosCollection.getInstance().getFuncionarios().get(funcionarioSelected);
             
-            if(solicitante.getNumeroFaltas() > 15) {
+            if(solicitante.getFaltas() > 15) {
                 JOptionPane.showMessageDialog(this.view, "Solicitante possui mais de 15 faltas");
                 return;
             }                
@@ -118,7 +118,7 @@ public class AdicionarPagamentoPresenter implements IObserver {
                         funcionario.getNome(),
                         funcionario.getCargo(),
                         funcionario.getIdade(),
-                        funcionario.getNumeroFaltas()
+                        funcionario.getFaltas()
                     }
             );
         });

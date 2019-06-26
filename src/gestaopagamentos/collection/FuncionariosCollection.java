@@ -47,6 +47,11 @@ public class FuncionariosCollection implements Serializable, ISubject {
         notifyObservers();
     }
     
+    public void removeFuncionario(Funcionario funcionario) {
+        this.funcionarios.remove(funcionario);
+        notifyObservers();
+    }
+    
     @Override
     public void registerObserver(IObserver observer) {
         this.observers.add(observer);
@@ -62,5 +67,5 @@ public class FuncionariosCollection implements Serializable, ISubject {
         for(IObserver observer : this.observers) {
             observer.update();
         }
-    }
+    }    
 }
