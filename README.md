@@ -3,5 +3,7 @@ Este trabalho foi desenvolvido para praticar conceitos de projetos de software v
 O trabalho consiste no desenvolvimento de um sistema de controle de pagamentos e funcionarios, assim como a persistencia dos dados.
 
 ## UML
+<img src="https://github.com/brenoufes/controle-de-pagamentos/blob/master/uml.png?raw=true"/>
 
 ## Diagrama de Sequencia do Manter Funcionario
+<img src="https://github.com/brenoufes/controle-de-pagamentos/blob/master/sequencia.png?raw=true"/>
