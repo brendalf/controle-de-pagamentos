@@ -5,7 +5,7 @@
  */
 package gestaopagamentos.collection;
 
-import gestaopagamentos.business.AutorizadoraPagamento;
+import gestaopagamentos.business.IAutorizadoraPagamento;
 import gestaopagamentos.business.DiretorFinanceiroAutorizadora;
 import gestaopagamentos.business.DiretorGeralAutorizadora;
 import gestaopagamentos.business.EmergencialAutorizadora;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class AutorizadoresCollection {
     
-    private ArrayList<AutorizadoraPagamento> autorizadores;
+    private ArrayList<IAutorizadoraPagamento> autorizadores;
     private static AutorizadoresCollection instance;
     
     public static AutorizadoresCollection getInstance(){
@@ -38,11 +38,11 @@ public class AutorizadoresCollection {
         this.autorizadores.add(new EmergencialAutorizadora());
     }
     
-    public ArrayList<AutorizadoraPagamento> getAutorizadores() {
+    public ArrayList<IAutorizadoraPagamento> getAutorizadores() {
         return autorizadores;
     }
 
-    public void setAutorizadores(ArrayList<AutorizadoraPagamento> autorizadores) {
+    public void setAutorizadores(ArrayList<IAutorizadoraPagamento> autorizadores) {
         this.autorizadores = autorizadores;
     }
 }

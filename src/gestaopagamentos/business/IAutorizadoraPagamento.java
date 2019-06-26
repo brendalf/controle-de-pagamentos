@@ -9,14 +9,14 @@ package gestaopagamentos.business;
  *
  * @author breno
  */
-public abstract class AutorizadoraPagamento {
+public abstract class IAutorizadoraPagamento {
     private boolean metodoHabilitado;
 
-    public AutorizadoraPagamento() {
+    public IAutorizadoraPagamento() {
         this.metodoHabilitado = true;
     }
     
-    public AutorizadoraPagamento(boolean metodoHabilitado) {
+    public IAutorizadoraPagamento(boolean metodoHabilitado) {
         this.metodoHabilitado = metodoHabilitado;
     }
     

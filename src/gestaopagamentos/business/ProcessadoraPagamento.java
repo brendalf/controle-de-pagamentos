@@ -12,22 +12,22 @@ import java.util.ArrayList;
  * @author breno
  */
 public class ProcessadoraPagamento {
-    private ArrayList<AutorizadoraPagamento> autorizadores;
+    private ArrayList<IAutorizadoraPagamento> autorizadores;
 
     public ProcessadoraPagamento() {
         this.autorizadores = new ArrayList<>();
     }
 
-    public ProcessadoraPagamento(ArrayList<AutorizadoraPagamento> autorizadores) {
+    public ProcessadoraPagamento(ArrayList<IAutorizadoraPagamento> autorizadores) {
         this.autorizadores = autorizadores;
     }  
     
-    public void addAutorizador(AutorizadoraPagamento autorizadora) {
+    public void addAutorizador(IAutorizadoraPagamento autorizadora) {
         this.autorizadores.add(autorizadora);
     }   
     
     public boolean processar(Pagamento pagamento) {
-        for(AutorizadoraPagamento autorizadora : this.autorizadores) {
+        for(IAutorizadoraPagamento autorizadora : this.autorizadores) {
             if(autorizadora.isMetodoHabilitado()) {
                 if(autorizadora.autorizar(pagamento)) {
                     System.out.println(pagamento.toString() + " aprovado por " + autorizadora.toString());

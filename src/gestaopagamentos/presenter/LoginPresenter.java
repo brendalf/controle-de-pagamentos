@@ -14,8 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,7 +30,6 @@ public class LoginPresenter {
                 (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
                 (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
         this.view.setVisible(true);
-        
         
         this.view.getBtAcessar().addActionListener(new ActionListener() {
             @Override
@@ -57,7 +54,7 @@ public class LoginPresenter {
         
         Usuario usuarioLogado = null;
         Iterator<Usuario> it = this.usuarios.iterator();
-        while(it.hasNext() || usuarioLogado == null) {
+        while(it.hasNext() && usuarioLogado == null) {
             Usuario validador = it.next();
             if(validador.getUser().equals(nome) && validador.getPasswd().equals(senha)) {
                 usuarioLogado = validador;

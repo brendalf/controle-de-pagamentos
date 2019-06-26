@@ -29,11 +29,11 @@ public class SalvarDados {
                 JOptionPane.showMessageDialog(fileChooser, "Nao selecionou uma pasta valida");
             }
             
-            ArrayList<SalvarDadosTratador> tratadores = new ArrayList<>();
+            ArrayList<ISalvarDadosTratador> tratadores = new ArrayList<>();
             tratadores.add(new SalvarDadosTratadorPagamentos(diretorio));
             tratadores.add(new SalvarDadosTratadorFuncionarios(diretorio));
             
-            for(SalvarDadosTratador tratador : tratadores) {
+            for(ISalvarDadosTratador tratador : tratadores) {
                 boolean retorno = tratador.carregar();
                 if(retorno) {
                     JOptionPane.showMessageDialog(null, tratador.getNome() + ": Dados importados com sucesso");
@@ -55,11 +55,11 @@ public class SalvarDados {
                 JOptionPane.showMessageDialog(fileChooser, "Nao selecionou uma pasta valida");
             }
             
-            ArrayList<SalvarDadosTratador> tratadores = new ArrayList<>();
+            ArrayList<ISalvarDadosTratador> tratadores = new ArrayList<>();
             tratadores.add(new SalvarDadosTratadorPagamentos(diretorio));
             tratadores.add(new SalvarDadosTratadorFuncionarios(diretorio));
             
-            for(SalvarDadosTratador tratador : tratadores) {
+            for(ISalvarDadosTratador tratador : tratadores) {
                 boolean retorno = tratador.salvar();
                 if(retorno) {
                     JOptionPane.showMessageDialog(null, tratador.getNome() + ": Dados exportados com sucesso");

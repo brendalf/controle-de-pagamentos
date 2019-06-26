@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  * @author breno
  */
 public class AdicionarFuncionarioPresenter {
+    
     private AdicionarFuncionarioView view;
     
     public AdicionarFuncionarioPresenter() {

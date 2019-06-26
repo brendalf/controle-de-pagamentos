@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gestaopagamentos.persistence;
-
-import java.io.FileNotFoundException;
+package gestaopagamentos.observer;
 
 /**
  *
  * @author breno
  */
-public interface SalvarDadosTratador {
-    boolean salvar();
-    boolean carregar();
-    String getNome();
+public interface ISubject {
+    void registerObserver(IObserver observer);
+    void removeObserver(IObserver observer);
+    void notifyObservers();    
 }

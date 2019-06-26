@@ -6,9 +6,12 @@
 package gestaopagamentos.presenter;
 
 import gestaopagamentos.collection.FuncionariosCollection;
+import gestaopagamentos.observer.IObserver;
 import gestaopagamentos.view.ListarFuncionariosView;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +19,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author breno
  */
-public class ListarFuncionariosPresenter {
+public class ListarFuncionariosPresenter implements IObserver {
+    
     private ListarFuncionariosView view;
     private DefaultTableModel tableModel;
     
@@ -26,6 +30,12 @@ public class ListarFuncionariosPresenter {
                 (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
                 (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
         this.view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                FuncionariosCollection.getInstance().removeObserver(ListarFuncionariosPresenter.this);
+            }            
+        });
         this.view.setVisible(true);
         this.view.setTitle("Listar Funcionários");
         
@@ -41,6 +51,8 @@ public class ListarFuncionariosPresenter {
         this.tableModel = new DefaultTableModel(colunas, 0);
         this.view.getTableFuncionarios().setModel(this.tableModel);
         fillTable();
+        
+        FuncionariosCollection.getInstance().registerObserver(this);
     }
     
     private void goToAddFuncionario() {
@@ -48,6 +60,7 @@ public class ListarFuncionariosPresenter {
     }
 
     private void dispose() {
+        FuncionariosCollection.getInstance().removeObserver(this);
         this.view.setVisible(false);
         this.view.dispose();
     }
@@ -70,5 +83,10 @@ public class ListarFuncionariosPresenter {
     private void clearTable() {
         while(this.tableModel.getRowCount() > 0)
             this.tableModel.removeRow(0);
+    }
+
+    @Override
+    public void update() {
+        fillTable();
     }
 }

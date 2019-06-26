@@ -6,9 +6,12 @@
 package gestaopagamentos.presenter;
 
 import gestaopagamentos.collection.PagamentosCollection;
+import gestaopagamentos.observer.IObserver;
 import gestaopagamentos.view.ListarPagamentosView;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author breno
  */
-public class ListarPagamentosPresenter {
+public class ListarPagamentosPresenter implements IObserver {
     private ListarPagamentosView view;
     private DefaultTableModel tableModel;
     
@@ -26,6 +29,12 @@ public class ListarPagamentosPresenter {
                 (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
                 (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
         this.view.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                PagamentosCollection.getInstance().removeObserver(ListarPagamentosPresenter.this);
+            }            
+        });
         this.view.setVisible(true);
         this.view.setTitle("Listar Pagamentos");
         
@@ -37,10 +46,12 @@ public class ListarPagamentosPresenter {
             goToAddPagamento();
         });
         
-        Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Situacao"};
+        Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Situacao", "Aprovado por"};
         this.tableModel = new DefaultTableModel(colunas, 0);
         this.view.getTablePagamentos().setModel(this.tableModel);
         fillTable();
+        
+        PagamentosCollection.getInstance().registerObserver(this);
     }
     
     private void goToAddPagamento() {
@@ -48,6 +59,7 @@ public class ListarPagamentosPresenter {
     }
 
     private void dispose() {
+        PagamentosCollection.getInstance().removeObserver(this);
         this.view.setVisible(false);
         this.view.dispose();
     }
@@ -63,7 +75,8 @@ public class ListarPagamentosPresenter {
                         pagamento.getDataVencimento().toString(),
                         pagamento.getSolicitante().getNome(),
                         pagamento.getSolicitante().getCargo(),
-                        pagamento.getSituacaoNome()
+                        pagamento.getSituacaoNome(),
+                        ""
                     }
             );
         });
@@ -72,5 +85,10 @@ public class ListarPagamentosPresenter {
     private void clearTable() {
         while(this.tableModel.getRowCount() > 0)
             this.tableModel.removeRow(0);
+    }
+
+    @Override
+    public void update() {
+        fillTable();
     }
 }

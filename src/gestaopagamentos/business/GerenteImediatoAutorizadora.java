@@ -9,7 +9,7 @@ package gestaopagamentos.business;
  *
  * @author breno
  */
-public class GerenteImediatoAutorizadora extends AutorizadoraPagamento {
+public class GerenteImediatoAutorizadora extends IAutorizadoraPagamento {
     
     @Override
     public boolean autorizar(Pagamento pagamento) {

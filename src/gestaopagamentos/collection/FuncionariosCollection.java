@@ -6,6 +6,8 @@
 package gestaopagamentos.collection;
 
 import gestaopagamentos.business.Funcionario;
+import gestaopagamentos.observer.IObserver;
+import gestaopagamentos.observer.ISubject;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -13,9 +15,10 @@ import java.util.ArrayList;
  *
  * @author breno
  */
-public class FuncionariosCollection implements Serializable {
+public class FuncionariosCollection implements Serializable, ISubject {
     
     private ArrayList<Funcionario> funcionarios;
+    private ArrayList<IObserver> observers;
     private static FuncionariosCollection instance;
     
     public static FuncionariosCollection getInstance(){
@@ -27,6 +30,7 @@ public class FuncionariosCollection implements Serializable {
 
     public FuncionariosCollection() {
         this.funcionarios = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
 
     public ArrayList<Funcionario> getFuncionarios() {
@@ -35,9 +39,28 @@ public class FuncionariosCollection implements Serializable {
 
     public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
         this.funcionarios = funcionarios;
+        notifyObservers();
     }
 
     public void addFuncionario(Funcionario funcionario) {
         this.funcionarios.add(funcionario);
+        notifyObservers();
+    }
+    
+    @Override
+    public void registerObserver(IObserver observer) {
+        this.observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(IObserver observer) {
+        this.observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for(IObserver observer : this.observers) {
+            observer.update();
+        }
     }
 }

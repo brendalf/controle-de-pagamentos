@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author breno
  */
-public class SalvarDadosTratadorPagamentos implements SalvarDadosTratador {
+public class SalvarDadosTratadorPagamentos implements ISalvarDadosTratador {
     
     private File destination;
 

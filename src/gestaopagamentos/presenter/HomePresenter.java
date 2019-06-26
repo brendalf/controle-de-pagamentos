@@ -5,18 +5,23 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.collection.PagamentosCollection;
 import gestaopagamentos.collection.UsuarioLogado;
+import gestaopagamentos.observer.IObserver;
 import gestaopagamentos.persistence.ImportarFuncionariosCSV;
 import gestaopagamentos.persistence.SalvarDados;
 import gestaopagamentos.view.HomeView;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
  * @author breno
  */
-public class HomePresenter {
+public class HomePresenter implements IObserver {
+    
     private HomeView view;
     
     public HomePresenter() {
@@ -24,6 +29,12 @@ public class HomePresenter {
         this.view.setLocation(
                 (Toolkit.getDefaultToolkit().getScreenSize().width / 2) - (this.view.getWidth() / 2),
                 (Toolkit.getDefaultToolkit().getScreenSize().height / 2) - (this.view.getHeight()/ 2));
+        this.view.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                PagamentosCollection.getInstance().removeObserver(HomePresenter.this);
+            }            
+        });
         this.view.setVisible(true);
         this.view.setTitle("Sistema de Gestão de Pagamentos");
         
@@ -61,6 +72,10 @@ public class HomePresenter {
         this.view.getMenuImportarFuncionarios().addActionListener((ActionEvent e) -> {
             goToImportarFuncionarios();
         });
+        
+        showPagamentos();
+        
+        PagamentosCollection.getInstance().registerObserver(this);
     }
     
     private void goToListarFuncionarios() {
@@ -93,5 +108,14 @@ public class HomePresenter {
 
     private void goToImportarFuncionarios() {
         ImportarFuncionariosCSV.importar();
+    }
+
+    @Override
+    public void update() {
+        showPagamentos();
+    }
+
+    private void showPagamentos() {
+        this.view.getTxtPagamentosRegistrados().setText(String.valueOf(PagamentosCollection.getInstance().getPagamentos().size()));
     }
 }
