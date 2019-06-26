@@ -23,18 +23,12 @@ public class ProcessadoraPagamento {
         Date data = new Date();
         
         if(pagamento.getDataVencimento().after(data)) {
-            for(IAutorizadoraPagamento autorizadora : AutorizadoresCollection.getInstance().getAutorizadores()) {
-                if(autorizadora.isMetodoHabilitado()) {
-                    if(autorizadora.autorizar(pagamento)) {
-                        pagamento.addDetalhe("Pagamento aprovado por " + autorizadora.toString(), UsuarioLogado.getInstance().getUsuario().getUser());
+            for(IAutorizadoraPagamento autorizadora : AutorizadoresCollection.getInstance().getAutorizadores())
+                if(autorizadora.isMetodoHabilitado())
+                    if(autorizadora.autorizar(pagamento))
                         return true;
-                    } else {
-                        pagamento.addDetalhe(autorizadora.toString() + " não pode aprovar!", UsuarioLogado.getInstance().getUsuario().getUser());
-                    }                
-                } else {
-                    pagamento.addDetalhe(autorizadora.toString() + " não habilitado!", UsuarioLogado.getInstance().getUsuario().getUser());
-                }
-            }
+            
+            pagamento.addDetalhe("Nenhum funcionario pode aprovar", UsuarioLogado.getInstance().getUsuario().getUser());
         } else {
             pagamento.addDetalhe("Pagamento vencido", UsuarioLogado.getInstance().getUsuario().getUser());
         }

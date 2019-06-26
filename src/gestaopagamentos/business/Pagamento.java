@@ -100,4 +100,16 @@ public class Pagamento implements Serializable {
     public void setAprovador(Funcionario aprovador) {
         this.aprovador = aprovador;
     }
+
+    public String getSituacao() {
+        if(this.aprovador != null) {
+            return "Aprovado"; 
+        }
+        
+        if(this.dataVencimento.after(new Date())) {
+            return "Aguardando";
+        }
+        
+        return "Rejeitado";
+    }
 }

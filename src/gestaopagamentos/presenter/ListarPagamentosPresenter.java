@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
  * @author breno
  */
 public class ListarPagamentosPresenter implements IObserver {
+    
     private ListarPagamentosView view;
     private DefaultTableModel tableModel;
     
@@ -63,7 +64,7 @@ public class ListarPagamentosPresenter implements IObserver {
             processarPagamentos();
         });
         
-        Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Situacao", "Aprovado por"};
+        Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Situacao", "Aprovado/Rejeitado por"};
         this.tableModel = new DefaultTableModel(colunas, 0);
         this.view.getTablePagamentos().setModel(this.tableModel);
         fillTable();
@@ -76,10 +77,14 @@ public class ListarPagamentosPresenter implements IObserver {
     }
     
     private void goToVerDetalhes() {
-        if(this.view.getTablePagamentos().getSelectedRow() == -1) {
+        int selected = this.view.getTablePagamentos().getSelectedRow();
+        if(selected == -1) {
             JOptionPane.showMessageDialog(this.view, "Selecione um pagamento");
             return;
         }
+        
+        Pagamento pagamento = PagamentosCollection.getInstance().getPagamentos().get(selected);
+        VerDetalhesPagamentoPresenter presenter = new VerDetalhesPagamentoPresenter(pagamento);
     }
     
     private void processarPagamentos() {
@@ -116,8 +121,8 @@ public class ListarPagamentosPresenter implements IObserver {
     private void fillTable() {
         clearTable();
         
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         PagamentosCollection.getInstance().getPagamentos().forEach((pagamento) -> {
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             this.tableModel.addRow(
                     new Object[]{
                         pagamento.getDescricao(),
@@ -125,7 +130,7 @@ public class ListarPagamentosPresenter implements IObserver {
                         df.format(pagamento.getDataVencimento()),
                         pagamento.getSolicitante().getNome(),
                         pagamento.getSolicitante().getCargo(),
-                        pagamento.getDataPagamento() != null ? "Aprovado" : (pagamento.getAprovador() == null ? "Aguardando" : "Rejeitado"),
+                        pagamento.getSituacao(),
                         pagamento.getAprovador() != null ? pagamento.getAprovador().getNome() : ""
                     }
             );
