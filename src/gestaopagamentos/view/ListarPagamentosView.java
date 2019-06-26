@@ -34,8 +34,8 @@ public class ListarPagamentosView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePagamentos = new javax.swing.JTable();
         btNovoPagamento = new javax.swing.JButton();
-        btAprovarRejeitar = new javax.swing.JButton();
         btVerDetalhes = new javax.swing.JButton();
+        btProcessarPagamentos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,14 +61,14 @@ public class ListarPagamentosView extends javax.swing.JFrame {
 
         btNovoPagamento.setText("Novo Pagamento");
 
-        btAprovarRejeitar.setText("Aprovar | Rejeitar");
-        btAprovarRejeitar.addActionListener(new java.awt.event.ActionListener() {
+        btVerDetalhes.setText("Detalhes");
+
+        btProcessarPagamentos.setText("Processar Pagamentos");
+        btProcessarPagamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAprovarRejeitarActionPerformed(evt);
+                btProcessarPagamentosActionPerformed(evt);
             }
         });
-
-        btVerDetalhes.setText("Ver Detalhes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,29 +85,29 @@ public class ListarPagamentosView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btVerDetalhes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAprovarRejeitar)))
+                        .addComponent(btProcessarPagamentos)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar)
                     .addComponent(btNovoPagamento)
-                    .addComponent(btAprovarRejeitar)
-                    .addComponent(btVerDetalhes))
+                    .addComponent(btVerDetalhes)
+                    .addComponent(btProcessarPagamentos))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btAprovarRejeitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAprovarRejeitarActionPerformed
+    private void btProcessarPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessarPagamentosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btAprovarRejeitarActionPerformed
+    }//GEN-LAST:event_btProcessarPagamentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,9 +145,9 @@ public class ListarPagamentosView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAprovarRejeitar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btNovoPagamento;
+    private javax.swing.JButton btProcessarPagamentos;
     private javax.swing.JButton btVerDetalhes;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePagamentos;
@@ -165,11 +165,11 @@ public class ListarPagamentosView extends javax.swing.JFrame {
         return tablePagamentos;
     }
 
-    public JButton getBtAprovarRejeitar() {
-        return btAprovarRejeitar;
-    }
-
     public JButton getBtVerDetalhes() {
         return btVerDetalhes;
+    }
+
+    public JButton getBtProcessarPagamentos() {
+        return btProcessarPagamentos;
     }
 }

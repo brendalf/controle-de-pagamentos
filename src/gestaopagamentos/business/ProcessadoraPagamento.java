@@ -5,43 +5,40 @@
  */
 package gestaopagamentos.business;
 
-import java.util.ArrayList;
+import gestaopagamentos.collection.AutorizadoresCollection;
+import gestaopagamentos.collection.UsuarioLogado;
+import java.util.Date;
 
 /**
  *
  * @author breno
  */
 public class ProcessadoraPagamento {
-    private ArrayList<IAutorizadoraPagamento> autorizadores;
 
     public ProcessadoraPagamento() {
-        this.autorizadores = new ArrayList<>();
+        
     }
-
-    public ProcessadoraPagamento(ArrayList<IAutorizadoraPagamento> autorizadores) {
-        this.autorizadores = autorizadores;
-    }  
-    
-    public void addAutorizador(IAutorizadoraPagamento autorizadora) {
-        this.autorizadores.add(autorizadora);
-    }   
     
     public boolean processar(Pagamento pagamento) {
-        for(IAutorizadoraPagamento autorizadora : this.autorizadores) {
-            if(autorizadora.isMetodoHabilitado()) {
-                if(autorizadora.autorizar(pagamento)) {
-                    System.out.println(pagamento.toString() + " aprovado por " + autorizadora.toString());
-                    pagamento.addDetalhe("Pagamento aprovado por " + autorizadora.toString(), "Sistema");
-                    return true;
+        Date data = new Date();
+        
+        if(pagamento.getDataVencimento().after(data)) {
+            for(IAutorizadoraPagamento autorizadora : AutorizadoresCollection.getInstance().getAutorizadores()) {
+                if(autorizadora.isMetodoHabilitado()) {
+                    if(autorizadora.autorizar(pagamento)) {
+                        pagamento.addDetalhe("Pagamento aprovado por " + autorizadora.toString(), UsuarioLogado.getInstance().getUsuario().getUser());
+                        return true;
+                    } else {
+                        pagamento.addDetalhe(autorizadora.toString() + " não pode aprovar!", UsuarioLogado.getInstance().getUsuario().getUser());
+                    }                
                 } else {
-                    pagamento.addDetalhe(autorizadora.toString() + " não pode aprovar!", "Sistema");
-                }                
-            } else {
-                pagamento.addDetalhe(autorizadora.toString() + " não habilitado!", "Sistema");
+                    pagamento.addDetalhe(autorizadora.toString() + " não habilitado!", UsuarioLogado.getInstance().getUsuario().getUser());
+                }
             }
+        } else {
+            pagamento.addDetalhe("Pagamento vencido", UsuarioLogado.getInstance().getUsuario().getUser());
         }
         
-        pagamento.addDetalhe("Pagamento não aprovado!", "Sistema");
         return false;
     }
 }

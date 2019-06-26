@@ -5,14 +5,23 @@
  */
 package gestaopagamentos.presenter;
 
+import gestaopagamentos.business.Pagamento;
+import gestaopagamentos.business.ProcessadoraPagamento;
 import gestaopagamentos.collection.PagamentosCollection;
 import gestaopagamentos.observer.IObserver;
+import gestaopagamentos.utils.CaixaDeProgresso;
 import gestaopagamentos.view.ListarPagamentosView;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -46,6 +55,14 @@ public class ListarPagamentosPresenter implements IObserver {
             goToAddPagamento();
         });
         
+        this.view.getBtVerDetalhes().addActionListener((ActionEvent e) -> {
+            goToVerDetalhes();
+        });
+        
+        this.view.getBtProcessarPagamentos().addActionListener((ActionEvent e) -> {
+            processarPagamentos();
+        });
+        
         Object colunas[] = {"Descrição", "Valor", "Data de Vencimento", "Solicitante", "Cargo", "Situacao", "Aprovado por"};
         this.tableModel = new DefaultTableModel(colunas, 0);
         this.view.getTablePagamentos().setModel(this.tableModel);
@@ -56,6 +73,38 @@ public class ListarPagamentosPresenter implements IObserver {
     
     private void goToAddPagamento() {
         AdicionarPagamentoPresenter presenter = new AdicionarPagamentoPresenter();
+    }
+    
+    private void goToVerDetalhes() {
+        if(this.view.getTablePagamentos().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this.view, "Selecione um pagamento");
+            return;
+        }
+    }
+    
+    private void processarPagamentos() {
+        ArrayList<Pagamento> pagamentos = PagamentosCollection.getInstance().getPagamentosNaoProcessados();
+        
+        CaixaDeProgresso cp = new CaixaDeProgresso(this.view);
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
+                ProcessadoraPagamento processadora = new ProcessadoraPagamento();
+               
+                pagamentos.forEach((pagamento) -> {
+                    processadora.processar(pagamento);
+                });
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                fillTable();
+                cp.dismiss();
+            }
+        };
+        worker.execute();
+        cp.show();
     }
 
     private void dispose() {
@@ -68,15 +117,16 @@ public class ListarPagamentosPresenter implements IObserver {
         clearTable();
         
         PagamentosCollection.getInstance().getPagamentos().forEach((pagamento) -> {
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             this.tableModel.addRow(
                     new Object[]{
                         pagamento.getDescricao(),
                         pagamento.getValor(),
-                        pagamento.getDataVencimento().toString(),
+                        df.format(pagamento.getDataVencimento()),
                         pagamento.getSolicitante().getNome(),
                         pagamento.getSolicitante().getCargo(),
-                        pagamento.getSituacaoNome(),
-                        ""
+                        pagamento.getDataPagamento() != null ? "Aprovado" : (pagamento.getAprovador() == null ? "Aguardando" : "Rejeitado"),
+                        pagamento.getAprovador() != null ? pagamento.getAprovador().getNome() : ""
                     }
             );
         });

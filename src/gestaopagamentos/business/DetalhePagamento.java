@@ -5,13 +5,14 @@
  */
 package gestaopagamentos.business;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Aluno
  */
-public class DetalhePagamento {
+public class DetalhePagamento implements Serializable {
     private Date data;
     private String descricao;
     private String usuario;
@@ -20,6 +21,10 @@ public class DetalhePagamento {
         this.data = data;
         this.descricao = descricao;
         this.usuario = usuario;
+    }
+
+    DetalhePagamento(Date date, String pagamento_vencido) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Date getData() {

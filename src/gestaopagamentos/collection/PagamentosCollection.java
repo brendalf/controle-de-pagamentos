@@ -36,6 +36,15 @@ public class PagamentosCollection implements Serializable, ISubject {
     public ArrayList<Pagamento> getPagamentos() {
         return pagamentos;
     }
+    
+    public ArrayList<Pagamento> getPagamentosNaoProcessados() {
+        ArrayList<Pagamento> naoprocessados = new ArrayList<>();
+        this.pagamentos.forEach((pagamento) -> {
+            if(pagamento.getDataPagamento() == null && pagamento.getAprovador() == null)
+                naoprocessados.add(pagamento);
+        });
+        return naoprocessados;
+    }
 
     public void setPagamentos(ArrayList<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;

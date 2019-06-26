@@ -17,6 +17,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -74,7 +75,7 @@ public class AdicionarPagamentoPresenter implements IObserver {
             String vencimento = this.view.getTxtVencimento().getText();
             float valor = Float.parseFloat(this.view.getTxtValor().getText());
             
-            DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             Date dataVencimento = df.parse(vencimento);
             
             int funcionarioSelected = this.view.getTableFuncionarios().getSelectedRow();

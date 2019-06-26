@@ -14,13 +14,8 @@ import java.util.Date;
  *
  * @author breno
  */
-public class Pagamento implements Serializable {
-    public static final int AGUARDANDO = 0;
-    public static final int APROVADO = 1;
-    public static final int REJEITADO = 2;
-    
+public class Pagamento implements Serializable {    
     private double valor;
-    private int situacao;
     private Date dataVencimento;
     private Date dataPagamento;
     private String descricao;
@@ -44,7 +39,6 @@ public class Pagamento implements Serializable {
         }
         
         this.valor = valor;
-        this.situacao = AGUARDANDO;
         this.dataVencimento = dataVencimento;
         this.descricao = descricao;
         this.solicitante = solicitante;
@@ -57,22 +51,6 @@ public class Pagamento implements Serializable {
 
     public void setValor(double valor) {
         this.valor = valor;
-    }
-
-    public int getSituacao() {
-        return situacao;
-    }
-    
-    public String getSituacaoNome() {
-        switch (this.situacao) {
-            case APROVADO: return "Aprovado";
-            case REJEITADO: return "Rejeitado";
-            default: return "Aguardando";
-        }
-    }
-
-    public void setSituacao(int situacao) {
-        this.situacao = situacao;
     }
 
     public Date getDataVencimento() {
@@ -113,5 +91,13 @@ public class Pagamento implements Serializable {
 
     public void addDetalhe(String descricao, String usuario) {
         this.detalhes.add(new DetalhePagamento(Date.from(Instant.now()), descricao, usuario));
+    }
+
+    public Funcionario getAprovador() {
+        return aprovador;
+    }
+
+    public void setAprovador(Funcionario aprovador) {
+        this.aprovador = aprovador;
     }
 }
